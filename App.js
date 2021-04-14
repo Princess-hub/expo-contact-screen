@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View, FlatList, Text, StyleSheet} from 'react-native';
+import Contact from './Components/Contact';
 
-export default function App() {
+const App = () => {
+  const contacts = [
+    {name: "kofi Ofo",number: "024115931"},
+    {name: "kofi ri",number: "024115930"},
+    {name: "kofi Ofor",number: "024119301"},
+    {name: "kofi i",number: "024159301"},
+    {name: "kofi O",number: "02419301"},
+    {name: "kofi ",number: "9-088909"},
+    {name: "kofi s",number: "0241159300"}
+  ]
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <FlatList 
+        data = {contacts}
+        renderItem = {(item)=>{
+          return <Text>{<Contact name={item.name} phone={item.number} />}</Text>
+        }}
+        keyExtractor = {(item) => item.number}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default App;
